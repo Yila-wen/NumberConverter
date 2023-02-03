@@ -17,16 +17,29 @@ public class ConverterRunner {
         int base = Integer.parseInt(choice);
         System.out.print("Enter your number: ");
         String number = s.nextLine();
-        int n = Integer.parseInt(number);
-        s.close();
-        NumberConverter nc = new NumberConverter(n, base,otherBase);
-        if(nc.restrict(n,base)){
-            int[] digits = nc.getDigits();
-            System.out.println("\n\nDigit array: " + Arrays.toString(digits));
-            System.out.println("Number: " + nc.displayOriginalNumber());
-            System.out.println(nc.displayConvertedNumber());
-        }else{
-            System.out.println("NOT APPLICABLE IN THIS BASE. TRY AGAIN");
+        if (base == 16){
+            s.close();
+            NumberConverter sc = new NumberConverter(number,base,otherBase);
+            if (sc.strRestrict(number,base)){
+                int[] digits = sc.getDigits();
+                System.out.println("\n\nDigit array: " + Arrays.toString(digits));
+                System.out.println("Number: " + sc.displayOriginalNumber());
+                System.out.println(sc.displayConvertedNumber());
+            }else{
+                System.out.println("NOT APPLICABLE IN THIS BASE. TRY AGAIN");
+            }
+        }
+        else {int n = Integer.parseInt(number);
+            s.close();
+            NumberConverter nc = new NumberConverter(n, base,otherBase);
+            if(nc.restrict(n,base)){
+                int[] digits = nc.getDigits();
+                System.out.println("\n\nDigit array: " + Arrays.toString(digits));
+                System.out.println("Number: " + nc.displayOriginalNumber());
+                System.out.println(nc.displayConvertedNumber());
+            }else{
+                System.out.println("NOT APPLICABLE IN THIS BASE. TRY AGAIN");
+            }
         }
     }
 }
